@@ -16,6 +16,7 @@ function CartController(){
   this.name = "My BɼokƏn Cart!";
   
   this.getCartCount = function(){
+      return this.cart.length;
     //return the length of our cart
   };
   
@@ -25,6 +26,13 @@ function CartController(){
   * this function should return the total cost
   * of each item that is in our cart
   */ 
+  this.calculateCartTotal = function() {
+      var total = 0;
+      this.cart.forEach(function(item) {
+          total += item.price;
+      });
+      return total;
+  };
   
   
   this.removeItemFromCart = function(item){
@@ -35,6 +43,7 @@ function CartController(){
     * in item is in the array. Then you will need to use the correct
     * Array.method to remove 1 item hint method(i, 1);
     */
+    this.cart.splice(this.cart.indexOf(item),1);
   };
   
   this.addItemToCart = function(item){
@@ -54,7 +63,7 @@ function CartController(){
       remaped to the newItem object. 
       After building the newItem add it to the cart 
       */
-      
+      this.cart.push({name: item.name, color: item.color, size: item.size, quantity: 1, price: item.price});
   }
   
 }
